@@ -1,8 +1,8 @@
-site_name: fillname
-site_url: https://docs.potassco.org/fillname/
+site_name: musclingo
+site_url: https://docs.potassco.org/musclingo/
 site_description:
-repo_name: potassco/fillname
-repo_url: https://github.com/potassco/fillname
+repo_name: potassco/musclingo
+repo_url: https://github.com/potassco/musclingo
 copyright: Copyright &copy; 2026 Potassco
 
 extra_css:

@@ -3,20 +3,24 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fillname"
-authors = [{ name = "Author Fillname", email = "author@fillname.org" }]
-description = "A template project."
-requires-python = ">=3.10"
+name = "musclingo"
+authors = [
+        { name = "Susana Hahn", email = "susuhahnml@yahoo.com.mx" },
+	{ name = "Antonio Ielo", email = "antonio.ielo@unical.it" },
+	{ name = "Hannes Weichelt", email = "hweichelt@uni-potsdam.de" },
+]
+description = "A package to compute MUSes of ASP programs."
+requires-python = ">=3.11"
 license = { file = "LICENSE" }
 dynamic = ["version"]
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/potassco/fillname.git/"
-Documentation = "https://docs.potassco.org/fillname/"
-Repository = "https://github.com/potassco/fillname"
-Issues = "https://github.com/potassco/fillname/issues"
-Changelog = "https://github.com/potassco/fillname/blob/master/CHANGES.md"
+Homepage = "https://github.com/potassco/musclingo.git/"
+Documentation = "https://docs.potassco.org/musclingo/"
+Repository = "https://github.com/potassco/musclingo"
+Issues = "https://github.com/potassco/musclingo/issues"
+Changelog = "https://github.com/potassco/musclingo/blob/master/CHANGES.md"
 
 [project.optional-dependencies]
 lint = ["ruff"]
@@ -31,10 +35,7 @@ doc = [
     "mkdocs-literate-nav",
     "pygments_clingo",
 ]
-dev = ["fillname[test,typecheck,lint]"]
-
-[project.scripts]
-fillname = "fillname.__main__:main"
+dev = ["musclingo[test,typecheck,lint]"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -80,8 +81,8 @@ python_files = "test_*.py"
 python_functions = "test_*"
 
 [tool.coverage.run]
-source = ["fillname", "tests"]
-omit = ["*/fillname/__main__.py", "*/fillname/utils/logging.py"]
+source = ["musclingo", "tests"]
+omit = ["*/musclingo/__main__.py", "*/musclingo/utils/logging.py"]
 
 [tool.coverage.report]
 show_missing = true

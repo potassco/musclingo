@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-# fillname
+# musclingo
 
 !!! info
-    *fillname* is part of the [Potassco](https://potassco.org) suite.
+    *musclingo* is part of the [Potassco](https://potassco.org) suite.
