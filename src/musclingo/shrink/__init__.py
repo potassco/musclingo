@@ -1,9 +1,9 @@
 from typing import Optional, Sequence, Tuple
 import clingo
 
-from asp_muses.shrink.protocol import MinimizationStrategy
-from asp_muses.shrink.linear_elimination import LinearElimination
-from asp_muses.shrink.quickxplain import QuickXPlain
+from musclingo.shrink.protocol import MinimizationStrategy
+from musclingo.shrink.linear_elimination import LinearElimination
+from musclingo.shrink.quickxplain import QuickXPlain
 
 
 def shrink(

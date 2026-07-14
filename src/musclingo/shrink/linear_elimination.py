@@ -1,5 +1,5 @@
 from typing import Sequence, Tuple
-from asp_muses.shrink.protocol import MinimizationStrategy
+from musclingo.shrink.protocol import MinimizationStrategy
 
 
 class LinearElimination(MinimizationStrategy):
