@@ -58,4 +58,5 @@ def test(session):
     if session.posargs:
         session.run("pytest", "-v", *session.posargs)
     else:
-        session.run("pytest", "--cov", "-v")
+        # session.run("pytest", "--cov", "-v")
+        session.run("pytest", "-v")
