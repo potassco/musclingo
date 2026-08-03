@@ -42,6 +42,10 @@ doc = [
 
 dev = ["musclingo[test,typecheck,lint]"]
 
+[tool.ty.src]
+exclude = [ "noxfile.py" ]
+include = [ "src", "tests" ]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
