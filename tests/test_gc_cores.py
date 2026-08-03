@@ -1,3 +1,7 @@
+"""
+Test cases enumerating MUSes and MSSes of an unsatisfiable graph colouring instance.
+"""
+
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 
@@ -10,10 +14,16 @@ from musclingo.shrink import LinearElimination
 
 
 def fmt_literals(literals: Sequence[int], lookup: Mapping[int, clingo.Symbol]) -> str:
+    """
+    Render `literals` as a space separated list of the symbols they stand for.
+    """
     return " ".join(str(lookup[z]) for z in literals)
 
 
 def test_cores() -> None:
+    """
+    Check that every set MARCO reports on the graph colouring instance is a genuine MUS or MSS.
+    """
     program = Path(__file__).parent / "gc_cores.lp"
 
     ctl = clingo.Control()
