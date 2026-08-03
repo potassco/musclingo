@@ -1,10 +1,24 @@
+"""
+Core shrinking by linear elimination of literals.
+"""
+
 from collections.abc import Sequence
 
 from musclingo.shrink.protocol import MinimizationStrategy
 
 
 class LinearElimination(MinimizationStrategy):
+    """
+    Shrink a core by testing its literals one at a time.
+
+    A literal whose removal makes the core satisfiable is critical and kept;
+    otherwise the solver's own core is used to discard several literals at once.
+    """
+
     def shrink_known(self, core: Sequence[int]) -> tuple[int, ...]:
+        """
+        Return a MUS contained in `core`, which must be unsatisfiable.
+        """
         working = list(core)
         critical = []
 

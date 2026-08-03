@@ -1,3 +1,7 @@
+"""
+Strategies to shrink an unsatisfiable core down to a MUS.
+"""
+
 from collections.abc import Sequence
 
 import clingo
@@ -12,6 +16,11 @@ def shrink(
     core: Sequence[int],
     strategy: MinimizationStrategy | None = None,
 ) -> tuple[int, ...] | None:
+    """
+    Shrink `core` to a MUS, or return `None` if `core` is satisfiable.
+
+    Defaults to `LinearElimination` when no strategy is given.
+    """
     if strategy is None:
         strategy = LinearElimination(ctl)
 

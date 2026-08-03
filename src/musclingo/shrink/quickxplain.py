@@ -1,10 +1,28 @@
+"""
+Core shrinking with the QuickXPlain divide and conquer algorithm.
+"""
+
 from collections.abc import Sequence
 
 from musclingo.shrink.protocol import MinimizationStrategy
 
 
 class QuickXPlain(MinimizationStrategy):
+    """
+    Shrink a core by recursively splitting it in half.
+
+    Each half is tested against the accumulated background, which needs
+    logarithmically many solver calls in the best case instead of one call per
+    literal. Cores reported by the solver are reused to trim candidates early.
+    """
+
     def _trim(self, A: list[int], B: list[int], combined: set[int] | None = None) -> list[int]:
+        """
+        Drop the literals of `A` that the last reported core shows to be irrelevant.
+
+        The core is only usable for trimming if it is contained in the union of
+        `A` and `B`, which the caller may pass precomputed as `combined`.
+        """
         if combined is None:
             combined = set(A) | set(B)
 
@@ -14,6 +32,11 @@ class QuickXPlain(MinimizationStrategy):
         return A
 
     def __qx__(self, A: list[int], B: list[int]) -> list[int]:
+        """
+        Entry point of the recursion: return the literals of `A` needed for unsatisfiability, given `B`.
+
+        The union of `A` and `B` has to be unsatisfiable.
+        """
         combined = set(A) | set(B)
         if self.core is None or not self.core.issubset(combined):
             ans = self.check(A + B)
@@ -31,6 +54,12 @@ class QuickXPlain(MinimizationStrategy):
         return self.__qx_prime__(B, A, B)
 
     def __qx_prime__(self, C: list[int], A: list[int], B: list[int]) -> list[int]:
+        """
+        Recursive step: return the part of `A` that is needed on top of background `B`.
+
+        `C` holds the literals most recently added to `B`; when it is non empty
+        and `B` alone is already unsatisfiable, nothing from `A` is needed.
+        """
         if len(C) > 0:
             ans = self.check(B)
             if ans.unsatisfiable:
@@ -53,4 +82,7 @@ class QuickXPlain(MinimizationStrategy):
         return X_1 + X_2
 
     def shrink_known(self, core: Sequence[int]) -> tuple[int, ...]:
+        """
+        Return a MUS contained in `core`, which must be unsatisfiable.
+        """
         return tuple(self.__qx__(list(core), []))

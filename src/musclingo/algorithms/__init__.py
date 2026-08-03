@@ -1,3 +1,7 @@
+"""
+Enumeration algorithms for minimal unsatisfiable subsets and maximal satisfiable subsets.
+"""
+
 from musclingo.algorithms.camus import CAMUS
 from musclingo.algorithms.checkers import (
     check_maximal_satisfiable,
