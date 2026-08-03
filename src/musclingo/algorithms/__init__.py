@@ -1,15 +1,15 @@
-from musclingo.algorithms.marco import MARCO
-from musclingo.algorithms.ihs import IHS
 from musclingo.algorithms.camus import CAMUS
 from musclingo.algorithms.checkers import (
-	check_minimal_unsatisfiable,
-	check_maximal_satisfiable,
+    check_maximal_satisfiable,
+    check_minimal_unsatisfiable,
 )
+from musclingo.algorithms.ihs import IHS
+from musclingo.algorithms.marco import MARCO
 
 __all__ = [
-	"MARCO",
-	"IHS",
-	"CAMUS",
-	"check_minimal_unsatisfiable",
-	"check_maximal_satisfiable",
+    "CAMUS",
+    "IHS",
+    "MARCO",
+    "check_maximal_satisfiable",
+    "check_minimal_unsatisfiable",
 ]
