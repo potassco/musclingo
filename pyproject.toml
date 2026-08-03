@@ -17,7 +17,6 @@ readme = "README.md"
 dependencies = [
     "bidict>=0.23.1",
     "clingo>=5.8.0",
-    "nox>=2026.7.11",
 ]
 
 [project.urls]
@@ -29,7 +28,7 @@ Changelog = "https://github.com/potassco/musclingo/blob/master/CHANGES.md"
 
 [project.optional-dependencies]
 lint = ["ruff"]
-typecheck = ["pytest", "ty"]
+typecheck = ["pytest", "ty", "nox"]
 test = ["pytest", "pytest-cov", "coverage[toml]"]
 doc = [
     "mkdocs",
@@ -40,6 +39,7 @@ doc = [
     "mkdocs-literate-nav",
     "pygments_clingo",
 ]
+
 dev = ["musclingo[test,typecheck,lint]"]
 
 [tool.setuptools.packages.find]
@@ -98,9 +98,4 @@ exclude_lines = [
     "nocoverage",
     "assert",
     "\\.\\.\\.",
-]
-
-[dependency-groups]
-dev = [
-    "pre-commit>=4.6.1",
 ]
