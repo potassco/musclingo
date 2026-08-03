@@ -25,7 +25,7 @@ class MARCO:
         self.minimization = strategy
         self._gen = self.__iter__()
 
-    def __iter__(self) -> Iterator[tuple[str, tuple[int, ...]]]:
+    def __iter__(self) -> Iterator[tuple[str, set[int]]]:
         """
         Yield `("mss", ...)` and `("mus", ...)` pairs until the lattice is fully explored.
         """
@@ -41,7 +41,7 @@ class MARCO:
                 yield "mus", core
                 self.lattice.block_up(core)
 
-    def __next__(self) -> tuple[str, tuple[int, ...]]:
+    def __next__(self) -> tuple[str, set[int]]:
         """
         Return the next labelled set from the underlying generator.
         """

@@ -2,7 +2,7 @@
 Core shrinking with the QuickXPlain divide and conquer algorithm.
 """
 
-from collections.abc import Sequence
+from collections.abc import Iterable
 
 from musclingo.shrink.protocol import MinimizationStrategy
 
@@ -81,8 +81,8 @@ class QuickXPlain(MinimizationStrategy):
 
         return X_1 + X_2
 
-    def shrink_known(self, core: Sequence[int]) -> tuple[int, ...]:
+    def shrink_known(self, core: Iterable[int]) -> set[int]:
         """
         Return a MUS contained in `core`, which must be unsatisfiable.
         """
-        return tuple(self.__qx__(list(core), []))
+        return set(self.__qx__(list(core), []))

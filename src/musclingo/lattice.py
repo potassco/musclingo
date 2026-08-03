@@ -2,7 +2,7 @@
 Power set lattices over assumption literals, used to drive seed enumeration.
 """
 
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import Protocol
 
 import clingo
@@ -24,25 +24,25 @@ class Lattice(Protocol):
         """
         ...
 
-    def next_seed(self) -> tuple[int, ...] | None:
+    def next_seed(self) -> set[int] | None:
         """
         Return an unexplored subset of the universe, or `None` if none is left.
         """
         ...
 
-    def block_up(self, seed: Sequence[int]) -> None:
+    def block_up(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its supersets as explored.
         """
         ...
 
-    def block_down(self, seed: Sequence[int]) -> None:
+    def block_down(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its subsets as explored.
         """
         ...
 
-    def force_disjoint(self, seed: Sequence[int]) -> None:
+    def force_disjoint(self, seed: Iterable[int]) -> None:
         """
         Temporarily restrict seeds to those disjoint from `seed`.
         """
@@ -57,7 +57,7 @@ class AssumptionsLattice:
     control object, so the search space shrinks monotonically as seeds are consumed.
     """
 
-    def __init__(self, universe: Sequence[int], bias: bool) -> None:
+    def __init__(self, universe: Iterable[int], bias: bool) -> None:
         """
         Build and ground the choice program over `universe` with the given seed size bias.
         """

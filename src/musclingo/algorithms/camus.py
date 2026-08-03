@@ -33,14 +33,14 @@ class CAMUS:
         self.ctl = ctl
         self._gen = self.__iter__()
 
-    def __iter__(self) -> Iterator[tuple[str, tuple[int, ...]]]:
+    def __iter__(self) -> Iterator[tuple[str, set[int]]]:
         """
         Yield all `("mss", ...)` pairs first, then all `("mus", ...)` pairs.
         """
         U = self.hitting_set.universe
         with self.ctl.solve(yield_=True) as sh:
             for model in sh:
-                mss = tuple(x for x in U if model.is_true(x))
+                mss = {x for x in U if model.is_true(x)}
                 yield ("mss", mss)
 
                 mcs = tuple(U.difference(mss))
@@ -48,9 +48,9 @@ class CAMUS:
 
         while (mus := self.hitting_set.get_mhs()) is not None:
             self.hitting_set.block_mhs(mus)
-            yield "mus", tuple(mus)
+            yield "mus", set(mus)
 
-    def __next__(self) -> tuple[str, tuple[int, ...]]:
+    def __next__(self) -> tuple[str, set[int]]:
         """
         Return the next labelled set from the underlying generator.
         """
