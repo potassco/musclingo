@@ -4,7 +4,7 @@ Nox sessions for linting, type checking and testing.
 
 import os
 
-import nox  # type: ignore
+import nox
 
 nox.options.sessions = "lint", "typecheck", "test"
 nox.options.default_venv_backend = "uv|virtualenv"
