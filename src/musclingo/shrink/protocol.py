@@ -44,7 +44,7 @@ class MinimizationStrategy(Protocol):
 
         return ans
 
-    def shrink_known(self, core: Iterable[int]) -> set[int]:
+    def shrink_known(self, core: Iterable[int]) -> tuple[set[int], bool]:
         """
         Return a MUS contained in `core`, which must be unsatisfiable.
         """
