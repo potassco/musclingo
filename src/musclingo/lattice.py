@@ -2,7 +2,6 @@
 Power set lattices over assumption literals, used to drive seed enumeration.
 """
 
-from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from typing import Protocol
 
@@ -12,7 +11,7 @@ from bidict import frozenbidict
 from musclingo.heuristic_utils import set_heuristic
 
 
-class Lattice(Protocol, meta=ABC):
+class Lattice(Protocol):
     """
     The power set lattice of a universe of literals, with explored regions blocked off.
     """
@@ -25,28 +24,24 @@ class Lattice(Protocol, meta=ABC):
         """
         ...
 
-    @abstractmethod
     def next_seed(self) -> set[int] | None:
         """
         Return an unexplored subset of the universe, or `None` if none is left.
         """
         ...
 
-    @abstractmethod
     def block_up(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its supersets as explored.
         """
         ...
 
-    @abstractmethod
     def block_down(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its subsets as explored.
         """
         ...
 
-    @abstractmethod
     def force_disjoint(self, seed: Iterable[int]) -> None:
         """
         Temporarily restrict seeds to those disjoint from `seed`.
