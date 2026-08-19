@@ -2,7 +2,7 @@
 The interface shared by all core shrinking strategies.
 """
 
-from collections.abc import Sequence
+from collections.abc import Iterable
 from typing import Protocol
 
 import clingo
@@ -28,23 +28,23 @@ class MinimizationStrategy(Protocol):
         self.core = None
         self.checks = 0
 
-    def on_core(self, core: Sequence[int]) -> None:
+    def on_core(self, core: Iterable[int]) -> None:
         """
         Record the unsatisfiable core reported by the solver.
         """
         self.core = set(core)
 
-    def check(self, seed: Sequence[int]) -> clingo.SolveResult:
+    def check(self, seed: Iterable[int]) -> clingo.SolveResult:
         """
         Solve under `seed` as assumptions, updating the check counter and the last core.
         """
         self.checks += 1
-        ans = self.ctl.solve(on_core=self.on_core, assumptions=seed)
+        ans = self.ctl.solve(on_core=self.on_core, assumptions=list(seed))
         assert not ans.unknown
 
         return ans
 
-    def shrink_known(self, core: Sequence[int]) -> tuple[int, ...]:
+    def shrink_known(self, core: Iterable[int]) -> set[int]:
         """
         Return a MUS contained in `core`, which must be unsatisfiable.
         """
