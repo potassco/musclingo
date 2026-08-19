@@ -28,6 +28,9 @@ pip-delete-this-directory.txt
 dmypy.json
 *egg-info*
 
+# uv
+uv.lock
+
 # unclassified
 dist
 build
