@@ -28,7 +28,9 @@ def shrink(
     if ans.satisfiable:
         return None
 
-    return strategy.shrink_known(core)
+    mus, _ = strategy.shrink_known(core)
+
+    return mus
 
 
 __all__ = [

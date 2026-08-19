@@ -81,8 +81,8 @@ class QuickXPlain(MinimizationStrategy):
 
         return X_1 + X_2
 
-    def shrink_known(self, core: Iterable[int]) -> set[int]:
+    def shrink_known(self, core: Iterable[int]) -> tuple[set[int], bool]:
         """
         Return a MUS contained in `core`, which must be unsatisfiable.
         """
-        return set(self.__qx__(list(core), []))
+        return set(self.__qx__(list(core), [])), True

@@ -37,7 +37,7 @@ class MARCO:
                 self.lattice.block_down(seed)
 
             elif ans.unsatisfiable:
-                core = self.minimization.shrink_known(seed)
+                core, _ = self.minimization.shrink_known(seed)
                 yield "mus", core
                 self.lattice.block_up(core)
 
