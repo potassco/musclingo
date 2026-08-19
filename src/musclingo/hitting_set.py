@@ -52,7 +52,7 @@ class LatticeHittingSet:
         """
         return self._lattice.universe
 
-    def get_mhs(self) -> Sequence[int] | None:
+    def get_mhs(self) -> set[int] | None:
         """
         Return the next unexplored minimal hitting set, or `None` if none is left.
         """

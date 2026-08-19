@@ -15,7 +15,7 @@ def shrink(
     ctl: clingo.Control,
     core: Sequence[int],
     strategy: MinimizationStrategy | None = None,
-) -> tuple[int, ...] | None:
+) -> set[int] | None:
     """
     Shrink `core` to a MUS, or return `None` if `core` is satisfiable.
 

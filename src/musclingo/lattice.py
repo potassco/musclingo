@@ -2,7 +2,8 @@
 Power set lattices over assumption literals, used to drive seed enumeration.
 """
 
-from collections.abc import Iterable, Sequence
+from abc import ABC, abstractmethod
+from collections.abc import Iterable
 from typing import Protocol
 
 import clingo
@@ -11,7 +12,7 @@ from bidict import frozenbidict
 from musclingo.heuristic_utils import set_heuristic
 
 
-class Lattice(Protocol):
+class Lattice(Protocol, meta=ABC):
     """
     The power set lattice of a universe of literals, with explored regions blocked off.
     """
@@ -24,24 +25,28 @@ class Lattice(Protocol):
         """
         ...
 
+    @abstractmethod
     def next_seed(self) -> set[int] | None:
         """
         Return an unexplored subset of the universe, or `None` if none is left.
         """
         ...
 
+    @abstractmethod
     def block_up(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its supersets as explored.
         """
         ...
 
+    @abstractmethod
     def block_down(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its subsets as explored.
         """
         ...
 
+    @abstractmethod
     def force_disjoint(self, seed: Iterable[int]) -> None:
         """
         Temporarily restrict seeds to those disjoint from `seed`.
@@ -49,7 +54,7 @@ class Lattice(Protocol):
         ...
 
 
-class AssumptionsLattice:
+class AssumptionsLattice(Lattice):
     """
     A `Lattice` encoded as an ASP choice over one `sel/1` atom per universe literal.
 
@@ -88,7 +93,7 @@ class AssumptionsLattice:
         """
         set_heuristic(self.ctl, list(self.lookup), bias)
 
-    def next_seed(self) -> tuple[int, ...] | None:
+    def next_seed(self) -> set[int] | None:
         """
         Return an unexplored subset of the universe, or `None` if none is left.
 
@@ -99,7 +104,7 @@ class AssumptionsLattice:
             model = sh.model()
 
             if model is not None:
-                return tuple(x.number for x in model.symbols(terms=True))
+                return {x.number for x in model.symbols(terms=True)}
 
         if len(self.disjoint_assumptions) == 0:
             return None
@@ -107,7 +112,7 @@ class AssumptionsLattice:
         self.disjoint_assumptions = []
         return self.next_seed()
 
-    def block_up(self, seed: Sequence[int]) -> None:
+    def block_up(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its supersets as explored.
         """
@@ -115,7 +120,7 @@ class AssumptionsLattice:
         with self.ctl.backend() as b:
             b.add_rule([], clause)
 
-    def block_down(self, seed: Sequence[int]) -> None:
+    def block_down(self, seed: Iterable[int]) -> None:
         """
         Mark `seed` and all of its subsets as explored.
         """
@@ -123,7 +128,7 @@ class AssumptionsLattice:
         with self.ctl.backend() as b:
             b.add_rule([], clause)
 
-    def force_disjoint(self, seed: Sequence[int]) -> None:
+    def force_disjoint(self, seed: Iterable[int]) -> None:
         """
         Restrict subsequent seeds to those disjoint from `seed`.
 
