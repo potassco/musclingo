@@ -4,9 +4,7 @@
     * [Help](use/help.md)
 * Reference
     * [Reference](reference/index.md)
-    * [Encodings](reference/encodings/index.md)
     * [API](reference/api/index.md)
-    * [CLI](reference/cli/index.md)
 * Examples
     * [Examples](examples/index.md)
 * Community
