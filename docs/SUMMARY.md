@@ -4,6 +4,7 @@
     * [Help](use/help.md)
 * Reference
     * [Reference](reference/index.md)
+    * [Overview](reference/overview.md)
     * [API](reference/api/index.md)
 * Examples
     * [Examples](examples/index.md)
