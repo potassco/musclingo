@@ -7,6 +7,7 @@
     * [API](reference/api/index.md)
 * Examples
     * [Examples](examples/index.md)
+    * [Usage Example](examples/usage-example.md)
 * Community
     * [Community](community/index.md)
     * [Contributing](community/CONTRIBUTING.md)
