@@ -4,9 +4,11 @@
     * [Help](use/help.md)
 * Reference
     * [Reference](reference/index.md)
-    * [API](reference/api/index.md)
-* Examples
-    * [Examples](examples/index.md)
+    * API Documentation
+        * [Algorithms](reference/api/algorithms.md)
+        * [Shrinking](reference/api/shrink.md)
+        * [Utils](reference/api/utils.md)
+* [Examples](examples/index.md)
 * Community
     * [Community](community/index.md)
     * [Contributing](community/CONTRIBUTING.md)

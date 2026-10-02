@@ -1,4 +1,8 @@
-# Reference
+---
+icon: "material/map-outline"
+---
+
+# Overview
 
 `musclingo` is a Python package that provides algorithms for computing minimal unsatisfiable subsets (MUSes) of ASP programs, and related objects such as maximal satisfiable subsets (MSSes). The implementation follows Alviano et al., [ASP and subset minimality: Enumeration, cautious reasoning and MUSes](https://doi.org/10.1016/j.artint.2023.103931). The library exposes _minimization strategies_ and _extraction algorithms_ separately, which handle the solving-under-assumptions plumbing required to minimize and extract unsatisfiable cores.
 
