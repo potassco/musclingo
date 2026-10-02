@@ -1,11 +1,11 @@
 ---
-title: "API Reference"
+title: "Algorithms"
 icon: "material/book-open-variant"
 ---
 
 # API
 
-::: musclingo
+::: musclingo.algorithms
     handler: python
     options:
       members: true
