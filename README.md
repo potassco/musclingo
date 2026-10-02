@@ -6,36 +6,22 @@
 
 ## Installation
 
-To install the project, run
+To install the project from the repository, run
 
 ```bash
 pip install .
 ```
+
+To install the project from pypi run
+
+```bash
+pip install musclingo
+```
+
 
 ## Documentation
 
 Full documentation is available at
 **[docs.potassco.org/musclingo](https://docs.potassco.org/musclingo/)**.
 
-## Usage
 
-Run the following for basic usage information:
-
-```bash
-musclingo -h
-```
-
-To generate and open the documentation, run
-
-```bash
-mkdocs serve -o
-```
-
-Make sure to install the optional documentation dependencies via
-
-```bash
-pip install .[doc]
-```
-
-Instructions to install and use `nox` can be found in
-[DEVELOPMENT.md](./DEVELOPMENT.md)

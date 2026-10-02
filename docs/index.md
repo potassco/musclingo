@@ -56,5 +56,13 @@ assumptions may be blamed, and then finds one or all such sets.
     been explored and propose the next candidate.
     See `musclingo.lattice`.
 
+
+## Similar projects
+
+- [clingo-explaid](https://potassco.org/clingo-explaid/) This library collects tools for explaining why an ASP program is unsatisfiable. The API to offers support for preprocessing, subset computation, and constraint analysis helpers for building
+explanation systems.
+
+- [asplain](https://potassco.org/asplain/) A library for explaining why an ASP program is unsatisfiable, focusing on providing human-readable explanations. Includes a command line and web interface for contrasting explanations.
+
 !!! info
     *musclingo* is part of the [Potassco](https://potassco.org) suite.
