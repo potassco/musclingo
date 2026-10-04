@@ -10,4 +10,3 @@ Install it using pip by running the following command in your terminal:
 ```console
 pip install musclingo
 ```
-
