@@ -18,10 +18,7 @@ To install the project from pypi run
 pip install musclingo
 ```
 
-
 ## Documentation
 
 Full documentation is available at
 **[docs.potassco.org/musclingo](https://docs.potassco.org/musclingo/)**.
-
-
