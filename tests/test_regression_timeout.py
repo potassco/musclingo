@@ -14,6 +14,7 @@ def test_timeout() -> None:
     ctl = clingo.Control()
     ctl.add("base", [], "{a; b}. :- a, b.")
     ctl.ground()
-    a, b = [ctl.symbolic_atoms[clingo.Function(c)].literal for c in "ab"]
+    atoms = [ctl.symbolic_atoms[clingo.Function(c)] for c in "ab"]
+    core = [sym.literal for sym in atoms if sym is not None]
 
-    assert LinearElimination(ctl).shrink_known([a, b], timeout=60.0) == ({a, b}, False)
+    assert LinearElimination(ctl).shrink_known(core, timeout=60.0) == (set(core), False)
