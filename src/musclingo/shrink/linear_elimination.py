@@ -50,7 +50,7 @@ class LinearElimination(MinimizationStrategy):
                 assert self.core is not None, "on_core() must populate self.core when unsatisfiable"
                 working = list(self.core.difference(critical))
 
-            if timeout is not None and t_start + time.perf_counter() > timeout:
+            if timeout is not None and time.perf_counter() - t_start > timeout:
                 interrupted = True
                 break
 
